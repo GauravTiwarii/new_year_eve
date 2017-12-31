@@ -1,0 +1,27 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  TodoGet:
+    Properties:
+      CodeUri: s3://new-year-eve-options-bucket/0211bb9f044b6ec9aa7f92c52201dd43
+      Description: Get
+      Environment:
+        Variables:
+          PROJECT_TABLE: new-year-eve-options
+      Events:
+        ApiTodoListAPI:
+          Properties:
+            Method: GET
+            Path: /new-year-eve-options
+          Type: Api
+      Handler: api.get_new-year_eve_options_handler
+      Policies:
+      - Statement:
+        - Action:
+          - dynamodb:GetItem
+          - dynamodb:Query
+          Effect: Allow
+          Resource: arn:aws:dynamodb:ap-south-1:613530786381:table/new-year-eve-options
+        Version: '2012-10-17'
+      Runtime: python3.6
+    Type: AWS::Serverless::Function
+Transform: AWS::Serverless-2016-10-31

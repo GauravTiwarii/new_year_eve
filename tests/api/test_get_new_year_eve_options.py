@@ -19,6 +19,9 @@ from moto import mock_dynamodb2
 from api.get_new_year_eve_options import get_new_year_eve_options
 from api.get_new_year_eve_options import handler as get_new_year_eve_options_handler
 
+
+# nsmr = api.get_new_year_eve_options_handler
+
 from dbconfig import init
 
 
