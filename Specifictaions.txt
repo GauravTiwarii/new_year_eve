@@ -1,0 +1,15 @@
+
+
+
+This is new_year_eve project.
+
+We will provide a few options for new_years_eve.
+User will select any of those options.
+Based on selection, we show something Funny.
+
+
+API -->
+
+  1. get options for new year.
+  2. post selected option by user.
+  3. based on selection, get funny content.

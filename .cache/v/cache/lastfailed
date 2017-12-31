@@ -1,0 +1,4 @@
+{
+  "tests/api/test_post_selected_new_year_eve_option.py::Test_get_new_year_eve_options": true,
+  "tests/api/test_post_selected_new_year_eve_option.py::Test_get_new_year_eve_options::()::test_total_length_of_provided_content": true
+}
