@@ -17,6 +17,11 @@ from moto import mock_dynamodb2
 
 
 from api.get_new_year_eve_options import get_new_year_eve_options
+from api.get_new_year_eve_options import handler as get_new_year_eve_options_handler
+
+
+# nsmr = api.get_new_year_eve_options_handler
+
 from dbconfig import init
 
 
@@ -39,3 +44,14 @@ class Test_get_new_year_eve_options(object):
         for option in new_year_eve_options :
             assert 'title' in option
             assert 'activity_id' in option
+
+
+    @mock_dynamodb2
+    def test_get_new_year_eve_options_handler(self):
+        client, table = init()
+
+        results = get_new_year_eve_options_handler({}, {})
+
+        assert results
+        assert 'statusCode' in results and results['statusCode'] == 200
+        assert 'body' in results

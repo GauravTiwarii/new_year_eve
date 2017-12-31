@@ -13,7 +13,7 @@ logger.setLevel(logging.INFO)
 def handler(event, context):
     ''' The get Handler'''
     table_name = os.getenv('PROJECT_TABLE', 'new_year_eve')
-    region_name = ('AWS_REGION' , 'ap-south-1')
+    region_name = os.getenv('AWS_REGION' , 'ap-south-1')
     client = boto3.resource('dynamodb', region_name = region_name)
 
     result = get_new_year_eve_options(client, table_name)
@@ -29,3 +29,23 @@ def get_new_year_eve_options(client, table_name):
     table = client.Table(table_name)
     result = table.scan()
     return result['Items']
+
+
+def respond(err, res=None):
+    #In a real app error messages shouldn't be sent
+    #This is a security concern. However, in a demo, for debugging, it's okay.
+    body = {}
+    if err:
+        body = json.dumps({'error' : err})
+    else :
+        body = json.dumps(res)
+
+    return {
+        'body' : body,
+        'statusCode' : 400 if err else 200,
+        'headers' : {
+            'Content-Type' : 'application/json',
+            'Access-Control-Allow-Origin' : '*'
+        }
+
+    }
