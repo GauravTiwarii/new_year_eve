@@ -7,3 +7,6 @@ install:
 - pip install moto
 - pip install moto[server]
 - pip install awscli
+
+script :
+  python -m pytest tests/
