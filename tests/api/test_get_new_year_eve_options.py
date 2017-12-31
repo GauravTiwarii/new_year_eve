@@ -39,3 +39,14 @@ class Test_get_new_year_eve_options(object):
         for option in new_year_eve_options :
             assert 'title' in option
             assert 'activity_id' in option
+
+
+    @mock_dynamodb2
+    def test_get_new_year_eve_options_handler(event, context):
+        client, table = init()
+
+        results = handler(event, {})
+
+        assert results
+        assert 'statusCode' in results and results['statusCode'] == '200'
+        assert 'body' in results

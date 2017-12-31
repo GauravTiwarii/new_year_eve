@@ -29,3 +29,8 @@ def get_new_year_eve_options(client, table_name):
     table = client.Table(table_name)
     result = table.scan()
     return result['Items']
+
+
+def respond(err, res=None):
+    #In a real app error messages shouldn't be sent
+    #This is a security concern. However, in a
