@@ -1,0 +1,28 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Resources:
+  new-year-eve-options-get:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: api.new-year-eve-options-get_handler
+      Runtime: python3.6
+      CodeUri: ./new-year-eve-options
+      Policies:
+        -Version: '2012-10-17'
+        Statement:
+          -Effect: Allow
+          Action:
+            - 'dynamodb:GetItem'
+            - 'dynamodb':Scan'
+          Resource: arn:aws:dynamodb:ap-south-1:613530786381
+
+      Description: new-year-eve-options
+      Environment:
+        Variables:
+          PROJECT_TABLE: new-year-eve-options
+      Events:
+        ApiNewYearEveAPI:
+          Type: Api
+          Properties:
+            Path: '/new-year-eve-options'
+            Method: GET
